@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { useAutoNotifications } from '../../hooks/useAutoNotifications';
 import { useManagedClient } from '../../hooks/useManagedClient';
 import { logout } from '../../utils';
+import { config } from '../../../lib/config';
 import { MobileLeftBar } from './LeftBar/MobileLeftBar';
 import { LeftBar } from './LeftBar/LeftBar';
 import {
@@ -40,7 +41,7 @@ const getPageTitle = (path: string): string => {
   if (path.startsWith('/admin/clients')) return 'Clientes';
   if (path.startsWith('/admin/reports')) return 'Reportes';
   if (path.startsWith('/admin')) return 'Admin';
-  return titles[path] || 'BudgEase';
+  return titles[path] || config.appName;
 };
 
 const getPageIcon = (path: string) => {

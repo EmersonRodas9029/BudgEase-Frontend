@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { motion, AnimatePresence } from 'framer-motion';
 import { clientesService, usuariosService } from '../../../clients/services';
+import { config } from '../../../../lib/config';
 import { authService } from '../../../auth/services';
 import { type TipoNotificacion } from '../../../notifications/services';
 import { configuracionesService } from '../../services';
@@ -427,7 +428,7 @@ export const SettingsPage = () => {
             </div>
             <div>
               <h1 className="text-3xl font-bold text-white tracking-tight">Configuración</h1>
-              <p className="text-white/50 text-sm mt-1">Personaliza tu experiencia en BudgEase</p>
+              <p className="text-white/50 text-sm mt-1">{`Personaliza tu experiencia en ${config.appName}`}</p>
             </div>
           </div>
           <div className="flex gap-2">
