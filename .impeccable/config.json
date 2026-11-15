@@ -1,0 +1,32 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "gradient-text",
+        "value": "*",
+        "files": [
+          "src/features/auth/pages/LoginPage.tsx"
+        ],
+        "createdAt": "2026-11-15T04:01:15.650Z",
+        "reason": "Intentional: part of the vibrant-SaaS design merged in PR #71 (design/vibrante-saas), confirmed by Emerson to keep as-is"
+      },
+      {
+        "rule": "gradient-text",
+        "value": "*",
+        "files": [
+          "src/shared/components/layout/MainLayout.tsx"
+        ],
+        "createdAt": "2026-11-15T04:01:15.664Z",
+        "reason": "Intentional: part of the vibrant-SaaS design merged in PR #71 (design/vibrante-saas), confirmed by Emerson to keep as-is"
+      },
+      {
+        "rule": "overused-font",
+        "value": "inter",
+        "createdAt": "2026-11-15T04:01:15.676Z",
+        "reason": "Intentional: part of the vibrant-SaaS design merged in PR #71 (design/vibrante-saas), confirmed by Emerson to keep as-is"
+      }
+    ]
+  }
+}

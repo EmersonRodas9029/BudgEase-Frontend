@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   TrendingUp,
@@ -135,7 +135,7 @@ export const IncomesPage = () => {
 
   const itemsPerPage = getViewPreferences().itemsPerPage;
 
-  const fetchIngresos = async () => {
+  const fetchIngresos = useCallback(async () => {
     setIsLoading(true);
     try {
       const list = await ingresosService.getAll();
@@ -148,9 +148,9 @@ export const IncomesPage = () => {
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [isClientRole, ownClienteId]);
 
-  useEffect(() => { fetchIngresos(); }, []);
+  useEffect(() => { fetchIngresos(); }, [fetchIngresos]);
 
   useEffect(() => { setCurrentPage(1); }, [searchTerm, selectedTipo, selectedActivo, selectedMetodo, selectedPeriod]);
 

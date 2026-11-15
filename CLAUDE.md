@@ -57,7 +57,7 @@ The backend is a separate repository at `../BudgEase-Backend` (sibling directory
 ### Styling
 
 Tailwind CSS with a custom dark theme. Key conventions:
-- Background base: `#1a0f14`; brand pink: `#F05984`; secondary: `#BC455F`; tertiary: `#6E4068`
+- Background base: `#08080B`; primary accent: `#8A5CF6` (violet); secondary accent: `#F26D5B` (orange); a few more accent gradients (`#46C7E0`, etc.) appear in cards/charts
 - Glass morphism via `glass-effect` CSS class
 - `lg:` prefix for desktop layouts; left sidebar hidden on mobile behind a hamburger
 
