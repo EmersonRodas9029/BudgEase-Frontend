@@ -1,5 +1,6 @@
 import { CheckCircle, Clock, Calendar, XCircle, AlertCircle } from 'lucide-react';
 import toast from 'react-hot-toast';
+import { config } from '../../lib/config';
 
 // ponytail: un único texto para "no hay conexión con el back" en toda la app, en vez de que cada
 // página redacte el suyo. El `id` fijo hace que react-hot-toast reemplace el toast existente en
@@ -30,11 +31,21 @@ export const generateUniqueId = (prefix = 'ID'): string =>
   `${prefix}-${Date.now()}-${Math.random().toString(36).substring(2, 9)}`;
 
 const SESSION_KEYS = [
-  'isAuthenticated', 'userRole', 'userName', 'authToken',
+  'isAuthenticated', 'userRole', 'userName', 'authToken', 'refreshToken',
   'clienteId', 'userId', 'userEmail', 'managedClienteId', 'managedClienteNombre',
 ];
 
+// ponytail: revoke best-effort, sin esperar la respuesta — si falla (sin red, backend caído),
+// la sesión local se limpia igual; el refresh token solo queda vivo hasta que expire por su cuenta.
 export const logout = (): void => {
+  const refreshToken = localStorage.getItem('refreshToken');
+  if (refreshToken) {
+    fetch(`${config.apiUrl}/auth/logout`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ refreshToken }),
+    }).catch(() => {});
+  }
   SESSION_KEYS.forEach((key) => localStorage.removeItem(key));
 };
 

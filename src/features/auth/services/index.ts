@@ -7,6 +7,7 @@ export interface LoginResponse {
   username: string;
   email: string;
   rol: string;
+  refreshToken: string;
 }
 
 export interface ApiError {

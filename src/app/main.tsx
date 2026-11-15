@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { Toaster } from 'react-hot-toast'
 import App from './App'
+import { config } from '../lib/config'
 import '../index.css'
 import '../styles/globals.css'
 
@@ -19,11 +20,11 @@ try {
   const saved = JSON.parse(localStorage.getItem('settings_preferences') || '{}');
   document.documentElement.style.fontSize = FONT_SIZES[saved.fontSize as keyof typeof FONT_SIZES] || FONT_SIZES.medium;
   document.documentElement.setAttribute('data-theme', saved.theme === 'light' ? 'light' : 'dark');
-  document.documentElement.setAttribute('data-color-scheme', saved.colorScheme || 'default');
+  document.documentElement.setAttribute('data-color-scheme', saved.colorScheme || config.defaultColorScheme);
 } catch {
   document.documentElement.style.fontSize = FONT_SIZES.medium;
   document.documentElement.setAttribute('data-theme', 'dark');
-  document.documentElement.setAttribute('data-color-scheme', 'default');
+  document.documentElement.setAttribute('data-color-scheme', config.defaultColorScheme);
 }
 
 const queryClient = new QueryClient()

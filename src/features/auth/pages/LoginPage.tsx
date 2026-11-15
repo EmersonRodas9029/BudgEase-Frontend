@@ -4,6 +4,7 @@ import { LoginForm } from '../components/LoginForm';
 import { authService } from '../services';
 import { clientesService } from '../../clients/services';
 import { Logo } from '../../../shared/components/ui/Logo';
+import { config } from '../../../lib/config';
 import { Shield, PieChart, Users } from 'lucide-react';
 
 const features = [
@@ -21,13 +22,14 @@ export const LoginPage = () => {
     setError('');
     setIsLoading(true);
     try {
-      const { token, userId, username: name, email, rol } = await authService.login(username, password);
+      const { token, refreshToken, userId, username: name, email, rol } = await authService.login(username, password);
       localStorage.setItem('isAuthenticated', 'true');
       localStorage.setItem('userRole', rol === 'CLIENTE' ? 'client' : rol === 'SUDO' ? 'sudo' : 'admin');
       localStorage.setItem('userName', name);
       localStorage.setItem('userEmail', email);
       localStorage.setItem('userId', String(userId));
       localStorage.setItem('authToken', token);
+      localStorage.setItem('refreshToken', refreshToken);
 
       if (rol === 'CLIENTE') {
         // Se resuelve una vez aquí para que todas las páginas tengan clienteId disponible
@@ -56,7 +58,7 @@ export const LoginPage = () => {
         <div className="relative p-12">
           <div className="flex items-center gap-2.5">
             <Logo size={34} />
-            <span className="font-display text-xl font-extrabold">BudgEase</span>
+            <span className="font-display text-xl font-extrabold">{config.appName}</span>
           </div>
         </div>
 
@@ -86,7 +88,7 @@ export const LoginPage = () => {
           </div>
         </div>
 
-        <div className="relative px-12 pb-10 text-[12.5px] text-white/30">© 2026 BudgEase</div>
+        <div className="relative px-12 pb-10 text-[12.5px] text-white/30">{`© 2026 ${config.appName}`}</div>
       </div>
 
       {/* Form panel */}

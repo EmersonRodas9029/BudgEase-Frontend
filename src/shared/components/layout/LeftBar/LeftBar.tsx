@@ -6,6 +6,7 @@ import {
 import { useUnreadNotificationsCount } from '../../../hooks/useUnreadNotificationsCount';
 import { Logo } from '../../ui/Logo';
 import { logout } from '../../../utils';
+import { config } from '../../../../lib/config';
 
 type Role = 'admin' | 'client' | 'sudo';
 
@@ -93,7 +94,7 @@ export const LeftBar = ({ userRole, userName = 'Usuario', userAvatar, onNavigate
         className="flex items-center gap-2.5 px-5 py-[22px] border-b border-white/[0.06] hover:opacity-80 transition-opacity"
       >
         <Logo size={30} />
-        <h1 className="font-display text-[17px] font-extrabold text-white tracking-tight">BudgEase</h1>
+        <h1 className="font-display text-[17px] font-extrabold text-white tracking-tight">{config.appName}</h1>
       </NavLink>
 
       {/* Perfil de usuario */}
